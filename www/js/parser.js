@@ -2,7 +2,7 @@ function parse(query,ext) {
     var PARSE = {};
     ext = ext || APP.extends;
     if (query == '') {
-        APP['parse_error'] = 'Пустой запрос';
+        APP['parse_error'] = '';
         return false;
     }
     words = query.toLowerCase().split(' ');

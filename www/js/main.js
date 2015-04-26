@@ -5,11 +5,15 @@ APP={
 };
 
 function init() {
+    if(location.hash!=''){
+        location.replace(location.href.split(location.hash)[0]);
+    }
     get('search').onkeyup = function (e) {
         e = e || window.event;
-        if (e.keyCode === 13) {
-            search(this.value);
-        }
+        //if (e.keyCode === 13) {
+            search(this.value,true);
+            clean();
+        //}
     }
 }
 
@@ -29,7 +33,7 @@ function search(query,ext){
                 extend=response['extends'][i];
                 APP['extends_source']+=(APP['extends_source']==''?'':', ')+'<a href="#" onclick="pick_extend('+extend.id+')">'+extend.name+'</a>';
             }
-            get('extends_list').innerHTML=APP['extends_source'];
+            get('extends_list').innerHTML='Давайте уточним: '+APP['extends_source'];
             delete extend;
             delete APP['extends_source'];
         }
@@ -48,6 +52,7 @@ function search(query,ext){
         get('items_list').innerHTML='<p>'+(APP['parse_error']?APP['parse_error']:'Нет результатов')+'</p>';
         delete APP['parse_error'];
     }
+    $('#wrapper').enhanceWithin();
 }
 
 function pick_extend(id) {
@@ -62,4 +67,16 @@ function view_item(id){
     get('view').innerHTML=APP['view_source'];
     delete item;
     delete APP['view_source'];
+}
+
+function clean() {
+    if (get('search').value == '') {
+        APP = {
+            query: '',
+            item: [],
+            extends: []
+        };
+        get('extends_list').innerHTML = '';
+        get('items_list').innerHTML = '';
+    }
 }

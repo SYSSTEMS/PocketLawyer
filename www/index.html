@@ -14,13 +14,13 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
     <title>Карманный Адвокат</title>
 </head>
-<body onload="init();">
+<body id="wrapper" onload="init();">
 <div data-role="page" id="main">
     <div data-role="header">
         <h1>Карманный Адвокат</h1>
     </div>
     <div role="main" class="ui-content">
-        <input name="search" id="search" value="" placeholder="Опишите что произошло..." type="search">
+        <input name="search" id="search" onfocus="clean();" value="" placeholder="Опишите что произошло..." type="search">
         <p id="extends_list"></p>
         <div id="items_list"></div>
     </div>
@@ -30,7 +30,14 @@
 </div>
 <div data-role="page" id="item">
     <div data-role="header">
-        <h1 id="title">Карманный Адвокат</h1>
+        <style>
+            #custom-border-radius .ui-btn-icon-notext.ui-corner-all {
+                -webkit-border-radius: .3125em;
+                border-radius: .3125em;
+            }
+        </style>
+        <a href="#main" class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all"></a>
+        <h1 id="title"></h1>
     </div>
     <div role="main" class="ui-content" id="view">
     </div>
