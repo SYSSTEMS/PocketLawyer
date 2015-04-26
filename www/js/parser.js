@@ -7,13 +7,10 @@ function parse(query,ext) {
     }
     words = query.toLowerCase().split(' ');
     for (i in words) {
-        window.console.log(words[i]);
         if (WORD.adverb.indexOf(words[i]) >= 0) {
             PARSE['question'] = true;
-            window.console.log('is Adverb');
         } else if (WORD.verb.indexOf(words[i]) >= 0) {
             PARSE['verb'] = true; //WORD.verb.indexOf(words[i]);
-            window.console.log('is Verb');
         }
     }
     for (i in ext) {
@@ -22,9 +19,7 @@ function parse(query,ext) {
             PARSE['documented'] = true;
         }
     }
-    window.console.log(PARSE['verb']);
     if (PARSE['verb']) {
-        window.console.log('generating...');
         /// START TEST PART
         response = {name: '', description: '', items: []};
         if (PARSE['documented']) {
